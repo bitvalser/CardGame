@@ -12,5 +12,5 @@
         {{currentCard.description}}
       </ion-card-content>
     </ion-card>
-  <game-card [cards]="cards.getCards()" (nextCard)="nextCard()"></game-card>
+  <game-card [card]="currentCard" (nextCard)="nextCard()"></game-card>
 </ion-content>

@@ -10,7 +10,7 @@ import { StackConfig,  DragEvent,  SwingStackComponent,  SwingCardComponent,} fr
 })
 export class CardComponent implements OnInit {
   @Input()
-  cards: Card[];
+  card: Card;
 
   @Output()
   nextCard = new EventEmitter<void>();
@@ -68,7 +68,6 @@ export class CardComponent implements OnInit {
       else if(dir === 'right'){
           console.log('right');
       }
-      this.cards.pop();
 ;  }
 
   decimalToHex(d, padding) {
@@ -101,7 +100,6 @@ export class CardComponent implements OnInit {
   // }
 
   ngOnInit() {
-    this.cards = this.cards.reverse();
   }
   
 }

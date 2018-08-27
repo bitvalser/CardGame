@@ -4,11 +4,6 @@ import { Card } from '../../core/components/Card';
 import { Cards } from '../../core/components/Cards';
 import { test, cards } from './mockCards';
 
-Object.defineProperty(Array.prototype, "next", {
-  value: function() { return this[++this.current]; },
-  enumerable: false
-});
-
 @Component({
   selector: 'page-main',
   templateUrl: 'main.html'
