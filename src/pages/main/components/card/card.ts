@@ -1,8 +1,9 @@
-import { Component, OnInit, Output, EventEmitter, Input, ViewChild, ViewChildren, QueryList  } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, ViewChild, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Card } from '../../../../core/components/Card';
 import * as $ from 'jquery';
 import { StackConfig,  DragEvent,  SwingStackComponent,  SwingCardComponent,} from 'angular2-swing';
+import { PlayerService } from '../../../../core/service/playerService';
 
 @Component({
   selector: 'game-card',
@@ -13,15 +14,21 @@ export class CardComponent implements OnInit {
   card: Card;
 
   @Output()
-  nextCard = new EventEmitter<void>();
+  nextCard = new EventEmitter<{ nextId: string, dir: string }>();
 
-  canSwipe: boolean = true;
-  @ViewChild('myswing1') swingStack: SwingStackComponent;
-  @ViewChildren('mycards1') swingCards: QueryList<SwingCardComponent>;
+  cards: any[] = [ 0 ];
+  counter: number;
+
+  @ViewChild('myswing') swingStack: SwingStackComponent;
+  @ViewChildren('mycards') swingCards: QueryList<SwingCardComponent>;
+  @ViewChildren('mycards') defaultCard: ElementRef;
+
+  reset: boolean;
 
   stackConfig: StackConfig;
 
-  constructor() {
+  constructor(private playerService: PlayerService) {
+    this.counter = 0;
     this.stackConfig = {
       throwOutConfidence: (offsetX, offsetY, element) => {
         return Math.min(Math.abs(offsetX) / (element.offsetWidth / 2), 1);
@@ -30,74 +37,53 @@ export class CardComponent implements OnInit {
         this.onItemMove(element, x, y, r);
       },
       throwOutDistance: d => {
-        return 1200;
+        return 0;
       },
     };
   }
 
   ngAfterViewInit() {
-    this.swingStack.throwin.subscribe((event: DragEvent) => {
-      event.target.style.borderColor = '#color';
-    });
+    // this.swingStack.throwin.subscribe((event: DragEvent) => {
+    //   event.target.style.borderColor = '#color';
+    // });
   }
 
 
   onItemMove(element, x, y, r) {
-    var color = '';
-    var abs = Math.abs(x);
+    let color = '';
+    let abs = Math.abs(x);
     let min = Math.trunc(Math.min(16 * 16 - abs, 16 * 16));
-    let hexCode = this.decimalToHex(min, 2);
 
-    if (x == 0) {
-      color = '#f2ebeb';
-    } else if (x < 0) {
-      color = '#FF' + hexCode + hexCode;
+    if (x > 0) {
+      $('.card-yes').css('font-size', abs / 10 + 15);
+      $('.card-yes').css('right', abs + 20);
+      $('.card-no').css('font-size', 15);
+      $('.card-no').css('left', -abs + 20);
     } else {
-      color = '#' + hexCode + 'FF' + hexCode;
+      $('.card-no').css('font-size', abs / 10 + 15);
+      $('.card-no').css('left', abs + 20);
+      $('.card-yes').css('font-size', 15);
+      $('.card-yes').css('right', -abs + 20);
     }
-    element.style.borderColor = color;
+
     element.style[
       'transform'
     ] = `translate3d(0, 0, 0) translate(${x}px, ${y}px) rotate(${r}deg)`;
   }
 
   cardSwiped(dir: string) {
-      if(dir === 'left') {
-          console.log('left')
-      }
-      else if(dir === 'right'){
-          console.log('right');
-      }
-;  }
-
-  decimalToHex(d, padding) {
-    var hex = Number(d).toString(16);
-    padding =
-      typeof padding === 'undefined' || padding === null
-        ? (padding = 2)
-        : padding;
-    while (hex.length < padding) {
-      hex = '0' + hex;
-    }
-    return hex;
+    this.update(500);
+    const paramsSelected = dir === 'left' ? this.card.answerParam.no : this.card.answerParam.yes;
+    this.playerService.update(paramsSelected);
+    this.nextCard.emit({ nextId: paramsSelected.nextCard, dir: dir });
   }
 
-  // swipe(event) {
-  //   if(this.canSwipe){
-  //     this.canSwipe = false;
-  //     if(event.direction == 2) {
-  //       $('#card').css('animation', 'swipeLeft 0.5s ease-in');
-  //     }
-  //     else if(event.direction == 4) {
-  //       $('#card').css('animation', 'swipeRight 0.5s ease-in');
-  //     }
-  //     setTimeout(() => {
-  //       $('#card').css('animation', '');
-  //       this.canSwipe = true;
-  //       this.nextCard.emit();
-  //     }, 500);
-  //   }
-  // }
+  update(time: number): void {
+    this.cards.pop();
+    setTimeout(() => {
+      this.cards.push(++this.counter);
+    }, time)
+  }
 
   ngOnInit() {
   }

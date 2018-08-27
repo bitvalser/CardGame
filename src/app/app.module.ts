@@ -10,6 +10,8 @@ import { CardComponent } from '../pages/main/components/card/card';
 
 import { SwingModule } from 'angular2-swing';
 
+import { PlayerService } from '../core/service/playerService'
+
 @NgModule({
   declarations: [
     MyApp,
@@ -30,6 +32,7 @@ import { SwingModule } from 'angular2-swing';
   providers: [
     StatusBar,
     SplashScreen,
+    PlayerService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

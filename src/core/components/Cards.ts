@@ -1,27 +1,26 @@
 import { Card } from './Card';
 
 export class Cards {
+    private firstId = 'first'
+    private history = [];
 
-    private currentId = 0;
-
-    constructor(private deck: Card[]) {}
+    constructor(private deck: any) {}
 
     public first(): Card {
-        this.currentId = 0;
-        return this.deck[0];
+        return this.deck[this.firstId];
     }
 
-    public next(): Card {
-        this.currentId += 1;
-        if (this.deck.length > this.currentId) {
-            return this.deck[this.currentId];
-        } else {
-            return null;
-        }
+    public next(id: string): Card {
+        return this.deck[id];
     }
 
-    public getCards(): Card[] {
+    public getCards(): any {
         return this.deck;
+    }
+
+    public pushHistory(id: string, answer: string): void {
+        this.history.push({id: id, answer: answer});
+        console.log(this.history);
     }
 
 } 

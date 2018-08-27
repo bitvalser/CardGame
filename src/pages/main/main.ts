@@ -17,9 +17,9 @@ export class MainPage {
     this.currentCard = this.cards.first();
   }
 
-  nextCard() {
-    this.currentCard = this.cards.next();
-    console.log('next');
+  nextCard(data: { nextId: string, dir: string }) {
+    this.cards.pushHistory(this.currentCard.id, data.dir === 'left' ? 'no' : 'yes');
+    this.currentCard = this.cards.next(data.nextId);
   }
 
 }

@@ -8,9 +8,15 @@ export class Card {
     answerParam: {
         yes: {
             health: number;
+            psyche: number;
+            karma: number;
+            nextCard: string;
         },
         no: {
             health: number;
+            psyche: number;
+            karma: number;
+            nextCard: string;
         }
     }
 }

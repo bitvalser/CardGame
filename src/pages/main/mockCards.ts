@@ -8,16 +8,22 @@ export const test = {
     answerParam: {
         yes: {
             health: 1,
+            psycho: 1,
+            karma: 1,
+            nextCard: '',
         },
         no: {
             health: 1,
+            psycho: 1,
+            karma: 1,
+            nextCard: '',
         }
     }
 }
 
-export const cards = [
-    {
-        id: 'id',
+export const cards = {
+    first: {
+        id: 'first',
         description: 'описание',
         yes: 'да',
         no: 'нет',
@@ -26,14 +32,20 @@ export const cards = [
         answerParam: {
             yes: {
                 health: 1,
+                psyche: 1,
+                karma: 1,
+                nextCard: 'second',
             },
             no: {
                 health: 1,
+                psyche: 1,
+                karma: 1,
+                nextCard: 'third',
             }
         }
     },
-    {
-        id: 'id1',
+    second: {
+        id: 'second',
         description: 'описание1',
         yes: 'да1',
         no: 'нет1',
@@ -42,14 +54,20 @@ export const cards = [
         answerParam: {
             yes: {
                 health: 1,
+                psyche: 1,
+                karma: 1,
+                nextCard: 'first',
             },
             no: {
                 health: 1,
+                psyche: 1,
+                karma: 1,
+                nextCard: 'first',
             }
         }
     },
-    {
-        id: 'id2',
+    third: {
+        id: 'third',
         description: 'описание2',
         yes: 'да2',
         no: 'нет2',
@@ -58,10 +76,16 @@ export const cards = [
         answerParam: {
             yes: {
                 health: 1,
+                psyche: 1,
+                karma: 1,
+                nextCard: 'first',
             },
             no: {
                 health: 1,
+                psyche: 1,
+                karma: 1,
+                nextCard: 'first',
             }
         }
     }
-]
+}
