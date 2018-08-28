@@ -1,5 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input, ViewChild, ViewChildren, QueryList, ElementRef } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { Component, OnInit, Output, EventEmitter, Input, ViewChild, ViewChildren, QueryList, ElementRef, ApplicationRef } from '@angular/core';
 import { Card } from '../../../../core/components/Card';
 import * as $ from 'jquery';
 import { StackConfig,  DragEvent,  SwingStackComponent,  SwingCardComponent,} from 'angular2-swing';
@@ -21,13 +20,12 @@ export class CardComponent implements OnInit {
 
   @ViewChild('myswing') swingStack: SwingStackComponent;
   @ViewChildren('mycards') swingCards: QueryList<SwingCardComponent>;
-  @ViewChildren('mycards') defaultCard: ElementRef;
 
   reset: boolean;
 
   stackConfig: StackConfig;
 
-  constructor(private playerService: PlayerService) {
+  constructor(private playerService: PlayerService, private appRef: ApplicationRef) {
     this.counter = 0;
     this.stackConfig = {
       throwOutConfidence: (offsetX, offsetY, element) => {
@@ -80,9 +78,12 @@ export class CardComponent implements OnInit {
 
   update(time: number): void {
     this.cards.pop();
+    $('#deck').css({ display: 'none' });
     setTimeout(() => {
+      $('#deck').css({ display: 'block' });
       this.cards.push(++this.counter);
-    }, time)
+      this.appRef.tick();
+    }, time);
   }
 
   ngOnInit() {

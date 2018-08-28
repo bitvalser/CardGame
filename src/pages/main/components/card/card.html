@@ -1,5 +1,5 @@
 <div class="card" id="card" swing-stack #myswing [stackConfig]="stackConfig" (throwoutleft)="cardSwiped('left')" (throwoutright)="cardSwiped('right')">
-    <ion-card #mycards style="border: 4px solid rgb(242, 235, 235); position: relative;" swing-card *ngFor="let c of cards">
+    <ion-card id="deck" #mycards style="border: 4px solid rgb(242, 235, 235); position: relative;" swing-card *ngFor="let c of cards">
         <h1 class="card-header">
             <span class="card-no">{{card.no}}</span>
             <span class="card-yes">{{card.yes}}</span>
