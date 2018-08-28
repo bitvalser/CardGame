@@ -1,8 +1,9 @@
 export const test = {
     id: 'id',
-    description: 'описание',
-    yes: 'да',
-    no: 'нет',
+    description: '-Прошу пройти за мной - грубо сказал полквоник.\nОтойдя в сторону он спросил:\n-Откуда ты тут взялся?',
+    title: 'Полковник',
+    yes: 'С деревни неподалёку',
+    no: 'Я ничего не помню',
     image: 'https://static.pexels.com/photos/53594/blue-clouds-day-fluffy-53594.jpeg',
     onlyText: false,
     answerParam: {
@@ -24,10 +25,11 @@ export const test = {
 export const cards = {
     first: {
         id: 'first',
-        description: 'описание',
-        yes: 'да',
-        no: 'нет',
-        image: 'https://static.pexels.com/photos/53594/blue-clouds-day-fluffy-53594.jpeg',
+        description: 'Гробовщик осмотрел тебя, немного помолчал и спросил:<br>-Уже поздно, можешь остаться у меня дома на ночь.',
+        title: 'Гробовщик',
+        yes: 'Простите, но нет',
+        no: 'С радостью',
+        image: '../../assets/imgs/cards/test1.png',
         onlyText: false,
         answerParam: {
             yes: {
@@ -40,16 +42,17 @@ export const cards = {
                 health: 1,
                 psyche: 1,
                 karma: 1,
-                nextCard: 'third',
+                nextCard: 'second',
             }
         }
     },
     second: {
         id: 'second',
-        description: 'описание1',
-        yes: 'да1',
-        no: 'нет1',
-        image: 'https://fm.cnbc.com/applications/cnbc.com/resources/img/editorial/2012/12/05/100281353-gold_bars_piles_gettyP.530x298.jpg?v=1494552432',
+        description: '-Прошу пройти за мной - грубо сказал полквоник<br>Отойдя в сторону он спросил:<br>-Откуда ты тут взялся?',
+        title: 'Полковник',
+        yes: 'С деревни неподалёку',
+        no: 'Я ничего не помню',
+        image: '../../assets/imgs/cards/test2.png',
         onlyText: false,
         answerParam: {
             yes: {
@@ -66,26 +69,4 @@ export const cards = {
             }
         }
     },
-    third: {
-        id: 'third',
-        description: 'описание2',
-        yes: 'да2',
-        no: 'нет2',
-        image: 'https://www.geek.com/wp-content/uploads/2018/04/space-myersalex216Pixabay-625x352.jpg',
-        onlyText: false,
-        answerParam: {
-            yes: {
-                health: 1,
-                psyche: 1,
-                karma: 1,
-                nextCard: 'first',
-            },
-            no: {
-                health: 1,
-                psyche: 1,
-                karma: 1,
-                nextCard: 'first',
-            }
-        }
-    }
 }

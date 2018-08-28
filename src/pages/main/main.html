@@ -1,16 +1,8 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
+
 </ion-header>
 
-<ion-content padding>
-    <ion-card class="description">
-      <ion-card-content>
-        {{currentCard.description}}
-      </ion-card-content>
-    </ion-card>
+<ion-content id="content" padding>
   <game-card [card]="currentCard" (nextCard)="nextCard($event)"></game-card>
+  <div class="description"></div>
 </ion-content>

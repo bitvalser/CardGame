@@ -52,14 +52,22 @@ export class CardComponent implements OnInit {
     let abs = Math.abs(x);
     let min = Math.trunc(Math.min(16 * 16 - abs, 16 * 16));
 
-    if (x > 0) {
-      $('.card-yes').css('font-size', abs / 10 + 15);
-      $('.card-yes').css('right', abs + 20);
+    if (x > 0 ) {
+      $('.card-yes').css('font-size', abs / 55 + 15);
+      if($('#deck').width() * 0.6 - 20 > abs) {
+        $('.card-yes').css('right', abs + 20);
+      } else {
+        $('.card-yes').css('right', $('#deck').width() * 0.6 - 15);
+      }
       $('.card-no').css('font-size', 15);
       $('.card-no').css('left', -abs + 20);
     } else {
-      $('.card-no').css('font-size', abs / 10 + 15);
-      $('.card-no').css('left', abs + 20);
+      $('.card-no').css('font-size', abs / 55 + 15);
+      if($('#deck').width() * 0.6 - 20 > abs) {
+        $('.card-no').css('left', abs + 20);
+      } else {
+        $('.card-no').css('left', $('#deck').width() * 0.6 - 15);
+      }
       $('.card-yes').css('font-size', 15);
       $('.card-yes').css('right', -abs + 20);
     }
@@ -78,9 +86,7 @@ export class CardComponent implements OnInit {
 
   update(time: number): void {
     this.cards.pop();
-    $('#deck').css({ display: 'none' });
     setTimeout(() => {
-      $('#deck').css({ display: 'block' });
       this.cards.push(++this.counter);
       this.appRef.tick();
     }, time);

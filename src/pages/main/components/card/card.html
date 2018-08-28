@@ -1,9 +1,10 @@
 <div class="card" id="card" swing-stack #myswing [stackConfig]="stackConfig" (throwoutleft)="cardSwiped('left')" (throwoutright)="cardSwiped('right')">
-    <ion-card id="deck" #mycards style="border: 4px solid rgb(242, 235, 235); position: relative;" swing-card *ngFor="let c of cards">
-        <h1 class="card-header">
-            <span class="card-no">{{card.no}}</span>
-            <span class="card-yes">{{card.yes}}</span>
+    <div id="deck" #mycards style="position: relative;" swing-card *ngFor="let c of cards">
+        <div class="title">{{card.title}}</div>
+        <h1 class="card-text">
+            <div class="card-no">{{card.no}}</div>
+            <div class="card-yes">{{card.yes}}</div>
         </h1>
         <img class="card-img" src="{{card.image}}"/>
-    </ion-card>
+    </div>
 </div>

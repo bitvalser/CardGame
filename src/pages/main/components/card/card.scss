@@ -1,5 +1,5 @@
 .card-img {
-    min-height: 380px;
+    min-height: 360px;
     object-fit: cover;
 }
 
@@ -12,29 +12,40 @@
  
 }
 
-.card-header {
+.title {
     position: absolute;
-    background: rgba(0, 0, 0, 0.7);
+    text-align: center;
+    width: 100%;
+    top: 62px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.card-text {
+    position: absolute;
     height: 50px;
     width: 100%;
-    line-height: 50px;
+    bottom: 0px;
     overflow: hidden;
+    background: rgba(202, 202, 202, 0.7);
 }
 
 .card-yes {
     position: absolute;
     font-size: 20px;
-    color: green;
     right: 20px;
     font-size: 15px;
-    vertical-align: middle;
+    text-align: center;
+    width: 40%;
+    margin-top: 5px;
 }
 
 .card-no {
     position: absolute;
     font-size: 20px;
-    color: red;
     left: 20px;
     font-size: 15px;
-    vertical-align: middle;
+    text-align: center;
+    width: 40%;
+    margin-top: 5px;
 }
