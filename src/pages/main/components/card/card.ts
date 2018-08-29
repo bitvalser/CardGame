@@ -57,7 +57,7 @@ export class CardComponent implements OnInit {
       if($('#deck').width() * 0.6 - 20 > abs) {
         $('.card-yes').css('right', abs + 20);
       } else {
-        $('.card-yes').css('right', $('#deck').width() * 0.6 - 15);
+        $('.card-yes').css('right', $('#deck').width() * 0.6 - 10);
       }
       $('.card-no').css('font-size', 15);
       $('.card-no').css('left', -abs + 20);
@@ -66,7 +66,7 @@ export class CardComponent implements OnInit {
       if($('#deck').width() * 0.6 - 20 > abs) {
         $('.card-no').css('left', abs + 20);
       } else {
-        $('.card-no').css('left', $('#deck').width() * 0.6 - 15);
+        $('.card-no').css('left', $('#deck').width() * 0.6 - 10);
       }
       $('.card-yes').css('font-size', 15);
       $('.card-yes').css('right', -abs + 20);
